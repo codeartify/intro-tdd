@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
+    public static final int NUMBER_OF_CELLS = 9;
     private final Map<Cell, Player> board = new HashMap<>();
 
     public void mark(Cell cell, Player player) {
@@ -19,6 +20,6 @@ public class Board {
     }
 
     public boolean isFilled() {
-        return board.size() == 9;
+        return board.size() == NUMBER_OF_CELLS;
     }
 }
