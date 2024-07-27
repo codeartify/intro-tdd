@@ -9,7 +9,6 @@ public class TicTacToe {
     private String currentPlayer = "X";
     private final Board board = new Board();
     private String winner;
-    private boolean isDraw;
 
     public void play(Cell cell) {
         if (board.isMarked(cell)) {
