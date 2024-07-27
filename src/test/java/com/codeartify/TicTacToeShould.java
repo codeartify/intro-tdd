@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TicTacToeShould {
     @Test
     void switch_players_after_playing_free_cell() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.CENTER);
 
@@ -20,7 +20,7 @@ public class TicTacToeShould {
 
     @Test
     void not_switch_players_if_cell_is_already_marked() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.CENTER);
         ticTacToe.play(Cell.CENTER);
@@ -30,7 +30,7 @@ public class TicTacToeShould {
 
     @Test
     void mark_free_cell_with_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
         var currentPlayer = ticTacToe.currentPlayer();
 
         ticTacToe.play(Cell.CENTER);
@@ -40,7 +40,7 @@ public class TicTacToeShould {
 
     @Test
     void not_mark_already_marked_cell_with_currentPlayer() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
         var previousPlayer = ticTacToe.currentPlayer();
 
         ticTacToe.play(Cell.CENTER);
@@ -51,7 +51,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_first_row_is_occupied_by_one_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
         ticTacToe.play(Cell.CENTER_LEFT);
@@ -64,7 +64,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_second_row_is_occupied_by_one_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
         ticTacToe.play(Cell.CENTER_LEFT);
@@ -78,7 +78,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_third_row_is_occupied_by_one_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.LOWER_LEFT);
         ticTacToe.play(Cell.CENTER_LEFT);
@@ -92,7 +92,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_upper_left_lower_right_diagonal_is_marked_by_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
         ticTacToe.play(Cell.CENTER_LEFT);
@@ -106,7 +106,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_lower_left_upper_right_diagonal_is_marked_by_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.LOWER_LEFT);
         ticTacToe.play(Cell.CENTER_LEFT);
@@ -121,7 +121,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_first_col_is_marked_by_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
         ticTacToe.play(Cell.CENTER);
@@ -135,7 +135,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_second_col_is_marked_by_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_CENTER);
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -151,7 +151,7 @@ public class TicTacToeShould {
 
     @Test
     void win_if_third_col_is_marked_by_current_player() {
-        var ticTacToe = new TicTacToe(new Board());
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_RIGHT);
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -169,8 +169,7 @@ public class TicTacToeShould {
         * O X X
         * O X O
          */
-        var board = new Board();
-        var ticTacToe = new TicTacToe(board);
+        var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
         ticTacToe.play(Cell.UPPER_CENTER);
@@ -184,7 +183,6 @@ public class TicTacToeShould {
 
         assertTrue(ticTacToe.isDraw());
     }
-
 
 
 }

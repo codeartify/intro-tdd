@@ -7,12 +7,19 @@ import static com.codeartify.Player.*;
 
 public class TicTacToe {
     private final Board board;
-    private Player currentPlayer = X;
-    private Player winner = EMPTY;
+    private Player currentPlayer;
+    private Player winner;
 
-    public TicTacToe(Board board) {
+    private TicTacToe(Board board) {
         this.board = board;
+        currentPlayer = X;
+        winner = EMPTY;
     }
+
+    public static TicTacToe create() {
+        return new TicTacToe(new Board());
+    }
+
 
     public void play(Cell cell) {
         if (canPlay(cell)) {
