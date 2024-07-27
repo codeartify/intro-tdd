@@ -11,19 +11,17 @@ public class TicTacToe {
     private String winner;
 
     public void play(Cell cell) {
-        if (board.isMarked(cell)) {
+        if (isGameFinished() || board.isMarked(cell)) {
             return;
         }
 
-        this.board.mark(cell, currentPlayer);
-
+        mark(cell);
         checkWinner();
-
-        if (isGameFinished()) {
-            return;
-        }
-
         switchPlayers();
+    }
+
+    private void mark(Cell cell) {
+        this.board.mark(cell, currentPlayer);
     }
 
     private boolean isGameFinished() {
