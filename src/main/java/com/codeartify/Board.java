@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    private Map<Cell, String> board = new HashMap<>();
+    private final Map<Cell, Player> board = new HashMap<>();
 
-    public void mark(Cell cell, String currentPlayer) {
-        this.board.put(cell, currentPlayer);
+    public void mark(Cell cell, Player player) {
+        this.board.put(cell, player);
     }
 
-    public String markAt(Cell cell) {
-        return this.board.getOrDefault(cell, "EMPTY");
+    public Player markAt(Cell cell) {
+        return this.board.getOrDefault(cell, Player.EMPTY);
     }
 
     boolean isMarked(Cell cell) {
-        return !markAt(cell).equals("EMPTY");
+        return markAt(cell) != Player.EMPTY;
     }
 
     public boolean isFilled() {
