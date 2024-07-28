@@ -16,7 +16,7 @@ public class FizzBuzzShould {
         assertEquals("2", actual);
     }
 
-    @ParameterizedTest()
+    @ParameterizedTest
     @ValueSource(ints = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 39, 63})
     void display_fizz_if_the_number_is_divisible_by_3(int input) {
         var fizzBuzz = new FizzBuzz();
