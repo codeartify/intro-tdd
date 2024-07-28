@@ -50,7 +50,7 @@ public class TicTacToeShould {
     }
 
     @Test
-    void win_if_first_row_is_occupied_by_one_player() {
+    void be_won_if_first_row_is_marked_by_one_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -63,7 +63,7 @@ public class TicTacToeShould {
     }
 
     @Test
-    void win_if_second_row_is_occupied_by_one_player() {
+    void be_won_if_second_row_is_marked_by_one_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -77,7 +77,7 @@ public class TicTacToeShould {
     }
 
     @Test
-    void win_if_third_row_is_occupied_by_one_player() {
+    void be_won_if_third_row_is_marked_by_one_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.LOWER_LEFT);
@@ -91,7 +91,7 @@ public class TicTacToeShould {
 
 
     @Test
-    void win_if_upper_left_lower_right_diagonal_is_marked_by_current_player() {
+    void be_won_if_upper_left_lower_right_diagonal_is_marked_by_current_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -105,7 +105,7 @@ public class TicTacToeShould {
 
 
     @Test
-    void win_if_lower_left_upper_right_diagonal_is_marked_by_current_player() {
+    void be_won_if_lower_left_upper_right_diagonal_is_marked_by_current_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.LOWER_LEFT);
@@ -120,7 +120,7 @@ public class TicTacToeShould {
 
 
     @Test
-    void win_if_first_col_is_marked_by_current_player() {
+    void be_won_if_first_col_is_marked_by_current_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
@@ -134,7 +134,7 @@ public class TicTacToeShould {
 
 
     @Test
-    void win_if_second_col_is_marked_by_current_player() {
+    void be_won_if_second_col_is_marked_by_current_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_CENTER);
@@ -147,10 +147,8 @@ public class TicTacToeShould {
     }
 
 
-
-
     @Test
-    void win_if_third_col_is_marked_by_current_player() {
+    void be_won_if_third_col_is_marked_by_current_player() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_RIGHT);
@@ -163,12 +161,7 @@ public class TicTacToeShould {
     }
 
     @Test
-    void end_in_draw_if_all_cells_occupied_and_no_winner() {
-        /*
-        * X O X
-        * O X X
-        * O X O
-         */
+    void end_in_a_draw_if_all_cells_marked_and_no_winner() {
         var ticTacToe = TicTacToe.create();
 
         ticTacToe.play(Cell.UPPER_LEFT);
