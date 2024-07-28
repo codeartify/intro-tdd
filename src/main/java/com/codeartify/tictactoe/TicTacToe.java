@@ -1,9 +1,9 @@
-package com.codeartify;
+package com.codeartify.tictactoe;
 
 import java.util.List;
 
-import static com.codeartify.Cell.*;
-import static com.codeartify.Player.*;
+import static com.codeartify.tictactoe.Cell.*;
+import static com.codeartify.tictactoe.Player.*;
 
 public class TicTacToe {
     private final Board board;

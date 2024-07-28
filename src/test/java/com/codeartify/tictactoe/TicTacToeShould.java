@@ -1,4 +1,4 @@
-package com.codeartify;
+package com.codeartify.tictactoe;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +59,7 @@ public class TicTacToeShould {
         ticTacToe.play(Cell.CENTER);
         ticTacToe.play(Cell.UPPER_RIGHT);
 
-        assertEquals(Player.X, ticTacToe.winner());
+        assertEquals(Player.X, ticTacToe.be_wonner());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class TicTacToeShould {
         ticTacToe.play(Cell.LOWER_RIGHT);
         ticTacToe.play(Cell.CENTER_RIGHT);
 
-        assertEquals(Player.O, ticTacToe.winner());
+        assertEquals(Player.O, ticTacToe.be_wonner());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class TicTacToeShould {
         ticTacToe.play(Cell.CENTER);
         ticTacToe.play(Cell.LOWER_RIGHT);
 
-        assertEquals(Player.X, ticTacToe.winner());
+        assertEquals(Player.X, ticTacToe.be_wonner());
     }
 
 
@@ -100,7 +100,7 @@ public class TicTacToeShould {
         ticTacToe.play(Cell.CENTER_RIGHT);
         ticTacToe.play(Cell.LOWER_RIGHT);
 
-        assertEquals(Player.X, ticTacToe.winner());
+        assertEquals(Player.X, ticTacToe.be_wonner());
     }
 
 
