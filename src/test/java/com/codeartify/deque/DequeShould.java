@@ -22,5 +22,16 @@ public class DequeShould {
         assertFalse(deque.isEmpty());
     }
 
+    @Test
+    void be_empty_after_adding_and_removing_an_element_to_and_from_the_front() {
+
+        var deque = new Deque();
+
+        deque.addFront(1);
+        deque.removeFront();
+
+        assertTrue(deque.isEmpty());
+    }
+
 
 }

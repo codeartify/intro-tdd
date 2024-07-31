@@ -11,4 +11,8 @@ public class Deque {
     public void addFront(int i) {
         isEmpty = false;
     }
+
+    public void removeFront() {
+        isEmpty = true;
+    }
 }
