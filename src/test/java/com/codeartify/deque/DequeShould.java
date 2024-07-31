@@ -66,5 +66,15 @@ public class DequeShould {
         assertThrows(DequeEmptyException.class, () -> new Deque().removeRear());
     }
 
+    @Test
+    void contain_two_elements_after_adding_two_elements_to_the_front() {
+        var deque = new Deque();
+
+        deque.addFront(1);
+        deque.addFront(1);
+
+        assertFalse(deque.isEmpty());
+        assertEquals(2, deque.size());
+    }
 
 }
