@@ -2,23 +2,23 @@ package com.codeartify.stack;
 
 public class Stack {
 
-    private boolean isEmpty = true;
+     private int size;
 
     public boolean isEmpty() {
-        return isEmpty;
+        return size == 0;
     }
 
     public void push(int element) {
-        this.isEmpty = false;
+        size++;
 
     }
 
     public int pop() {
-        this.isEmpty = true;
+        size--;
         return -1;
     }
 
     public int size() {
-        return 2;
+        return size;
     }
 }

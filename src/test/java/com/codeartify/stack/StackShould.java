@@ -32,6 +32,7 @@ public class StackShould {
         stack.pop();
 
         assertTrue(stack.isEmpty());
+        assertEquals(0, stack.size());
     }
 
     @Test
