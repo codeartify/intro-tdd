@@ -46,4 +46,11 @@ public class StackShould {
 
         assertEquals(2, stack.size());
     }
+
+    @Test
+    void throw_an_exception_if_an_empty_stack_is_popped() {
+        var stack = new Stack();
+
+        assertThrows(EmptyStackPoppedException.class, stack::pop);
+    }
 }

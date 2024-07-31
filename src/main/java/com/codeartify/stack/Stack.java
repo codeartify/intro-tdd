@@ -13,6 +13,9 @@ public class Stack {
     }
 
     public int pop() {
+        if (size == 0) {
+            throw new EmptyStackPoppedException();
+        }
         size--;
         return -1;
     }
