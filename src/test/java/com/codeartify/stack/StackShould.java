@@ -8,7 +8,7 @@ public class StackShould {
 
     @Test
     void be_empty_on_creation() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         var isEmpty = stack.isEmpty();
 
@@ -18,7 +18,7 @@ public class StackShould {
 
     @Test
     void not_be_empty_after_pushing_an_element() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         stack.push(0);
 
@@ -28,7 +28,7 @@ public class StackShould {
 
     @Test
     void be_empty_after_pushing_and_popping_an_element() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         stack.push(0);
         stack.pop();
@@ -39,7 +39,7 @@ public class StackShould {
 
     @Test
     void have_a_size_of_2_after_two_pushs() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         stack.push(0);
         stack.push(0);
@@ -49,14 +49,14 @@ public class StackShould {
 
     @Test
     void throw_an_exception_if_an_empty_stack_is_popped() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         assertThrows(EmptyStackPoppedException.class, stack::pop);
     }
 
     @Test
     void pops_the_last_element_pushed_to_the_stack() {
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         stack.push(99);
         assertEquals(99, stack.pop());
@@ -68,7 +68,7 @@ public class StackShould {
     @Test
     void pops_elements_in_the_reverse_order_of_how_they_were_pushed() {
 
-        var stack = new Stack();
+        var stack = new Stack<Integer>();
 
         stack.push(99);
         stack.push(88);

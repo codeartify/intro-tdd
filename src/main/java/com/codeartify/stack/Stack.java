@@ -3,18 +3,18 @@ package com.codeartify.stack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stack {
-    private final List<Integer> elements = new ArrayList<>();
+public class Stack<T> {
+    private final List<T> elements = new ArrayList<>();
 
     public boolean isEmpty() {
         return elements.isEmpty();
     }
 
-    public void push(int element) {
+    public void push(T element) {
         this.elements.add(element);
     }
 
-    public int pop() {
+    public T pop() {
         if (elements.isEmpty()) {
             throw new EmptyStackPoppedException();
         }
