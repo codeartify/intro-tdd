@@ -40,4 +40,14 @@ public class DequeShould {
     }
 
 
+    @Test
+    void not_be_empty_after_adding_an_element_to_the_rear() {
+        var deque = new Deque();
+
+        deque.addRear(1);
+
+        assertFalse(deque.isEmpty());
+        assertEquals(1, deque.size());
+    }
+
 }

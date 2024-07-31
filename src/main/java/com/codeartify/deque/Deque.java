@@ -25,4 +25,9 @@ public class Deque {
     public int size() {
         return size;
     }
+
+    public void addRear(int value) {
+        isEmpty = false;
+        size++;
+    }
 }
