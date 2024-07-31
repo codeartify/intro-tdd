@@ -77,4 +77,9 @@ public class DequeShould {
         assertEquals(2, deque.size());
     }
 
+    @Test
+    void pop_elements_from_front_in_reverse_insertion_order() {
+
+    }
+
 }
