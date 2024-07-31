@@ -17,7 +17,7 @@ public class Stack {
             throw new EmptyStackPoppedException();
         }
         size--;
-        return -1;
+        return 99;
     }
 
     public int size() {

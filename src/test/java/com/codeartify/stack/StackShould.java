@@ -53,4 +53,12 @@ public class StackShould {
 
         assertThrows(EmptyStackPoppedException.class, stack::pop);
     }
+
+    @Test
+    void pops_the_last_element_pushed_to_the_stack() {
+        var stack = new Stack();
+
+        stack.push(99);
+        assertEquals(99, stack.pop());
+    }
 }
