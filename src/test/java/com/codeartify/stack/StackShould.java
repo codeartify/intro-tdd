@@ -60,5 +60,8 @@ public class StackShould {
 
         stack.push(99);
         assertEquals(99, stack.pop());
+
+        stack.push(88);
+        assertEquals(88, stack.pop());
     }
 }
