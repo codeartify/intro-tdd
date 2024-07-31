@@ -13,6 +13,9 @@ public class Deque {
     }
 
     public void removeFront() {
+        if (isEmpty) {
+            throw new DequeEmptyException();
+        }
         isEmpty = true;
     }
 }
