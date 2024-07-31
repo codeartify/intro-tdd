@@ -12,4 +12,9 @@ public class Stack {
         this.isEmpty = false;
 
     }
+
+    public int pop() {
+        this.isEmpty = true;
+        return -1;
+    }
 }

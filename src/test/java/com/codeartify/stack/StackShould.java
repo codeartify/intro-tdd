@@ -24,4 +24,14 @@ public class StackShould {
 
         assertFalse(stack.isEmpty());
     }
+
+    @Test
+    void be_empty_after_pushing_and_popping_an_element() {
+        var stack = new Stack();
+
+        stack.push(0);
+        stack.pop();
+
+        assertTrue(stack.isEmpty());
+    }
 }
