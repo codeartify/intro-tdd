@@ -10,6 +10,7 @@ public class DequeShould {
         var deque = new Deque();
 
         assertTrue(deque.isEmpty());
+        assertEquals(0, deque.size());
     }
 
     @Test
@@ -19,6 +20,7 @@ public class DequeShould {
         deque.addFront(1);
 
         assertFalse(deque.isEmpty());
+        assertEquals(1, deque.size());
     }
 
     @Test
@@ -29,6 +31,7 @@ public class DequeShould {
         deque.removeFront();
 
         assertTrue(deque.isEmpty());
+        assertEquals(0, deque.size());
     }
 
     @Test
