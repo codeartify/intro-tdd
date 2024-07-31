@@ -4,27 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stack {
-
-    private int size;
     private final List<Integer> elements = new ArrayList<>();
 
     public boolean isEmpty() {
-        return size == 0;
+        return elements.isEmpty();
     }
 
     public void push(int element) {
         this.elements.add(element);
-        size++;
     }
 
     public int pop() {
-        if (size == 0) {
+        if (elements.isEmpty()) {
             throw new EmptyStackPoppedException();
         }
-        return elements.remove(--size);
+        return elements.removeLast();
     }
 
     public int size() {
-        return size;
+        return elements.size();
     }
 }
