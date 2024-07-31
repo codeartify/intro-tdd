@@ -13,6 +13,7 @@ public class StackShould {
         var isEmpty = stack.isEmpty();
 
         assertTrue(isEmpty);
+        assertEquals(0, stack.size());
     }
 
     @Test
@@ -22,6 +23,7 @@ public class StackShould {
         stack.push(0);
 
         assertFalse(stack.isEmpty());
+        assertEquals(1, stack.size());
     }
 
     @Test
