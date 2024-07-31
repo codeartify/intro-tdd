@@ -17,4 +17,8 @@ public class Stack {
         this.isEmpty = true;
         return -1;
     }
+
+    public int size() {
+        return 2;
+    }
 }

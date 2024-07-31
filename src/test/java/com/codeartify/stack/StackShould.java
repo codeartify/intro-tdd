@@ -2,8 +2,7 @@ package com.codeartify.stack;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StackShould {
 
@@ -33,5 +32,15 @@ public class StackShould {
         stack.pop();
 
         assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void have_a_size_of_2_after_two_pushs() {
+        var stack = new Stack();
+
+        stack.push(0);
+        stack.push(0);
+
+        assertEquals(2, stack.size());
     }
 }
