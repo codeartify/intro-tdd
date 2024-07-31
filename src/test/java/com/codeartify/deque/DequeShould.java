@@ -50,4 +50,21 @@ public class DequeShould {
         assertEquals(1, deque.size());
     }
 
+    @Test
+    void be_empty_after_adding_and_removing_an_element_to_and_from_the_rear() {
+        var deque = new Deque();
+
+        deque.addRear(1);
+        deque.removeRear();
+
+        assertTrue(deque.isEmpty());
+        assertEquals(0, deque.size());
+    }
+
+    @Test
+    void throw_an_exception_when_trying_to_remove_rear_from_an_empty_deque() {
+        assertThrows(DequeEmptyException.class, () -> new Deque().removeRear());
+    }
+
+
 }

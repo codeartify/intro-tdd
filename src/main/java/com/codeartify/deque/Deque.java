@@ -30,4 +30,12 @@ public class Deque {
         isEmpty = false;
         size++;
     }
+
+    public void removeRear() {
+        if (isEmpty) {
+            throw new DequeEmptyException();
+        }
+        isEmpty = true;
+        size--;
+    }
 }
