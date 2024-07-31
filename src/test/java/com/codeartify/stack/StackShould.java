@@ -64,4 +64,16 @@ public class StackShould {
         stack.push(88);
         assertEquals(88, stack.pop());
     }
+
+    @Test
+    void pops_elements_in_the_reverse_order_of_how_they_were_pushed() {
+
+        var stack = new Stack();
+
+        stack.push(99);
+        stack.push(88);
+
+        assertEquals(88, stack.pop());
+        assertEquals(99, stack.pop());
+    }
 }
