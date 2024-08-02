@@ -1,7 +1,7 @@
 package com.codeartify.test_doubles;
 
 public class AddTicketToCartUseCase {
-    private ConcertVisitorRepository concertVisitors;
+    private final ConcertVisitorRepository concertVisitors;
 
     public AddTicketToCartUseCase(ConcertVisitorRepository concertVisitors) {
         this.concertVisitors = concertVisitors;
