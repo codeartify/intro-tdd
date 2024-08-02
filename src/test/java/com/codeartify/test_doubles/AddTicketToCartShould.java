@@ -27,8 +27,17 @@ public class AddTicketToCartShould {
     void show_a_message_that_no_tickets_are_available() {
         var addTicketToCartUseCase = new AddTicketToCartUseCase();
 
-        var message = addTicketToCartUseCase.execute();
+        var message = addTicketToCartUseCase.execute(0);
 
         assertEquals("No available tickets!", message);
+    }
+
+    @Test
+    void fail_if_the_concert_visitor_does_not_exist() {
+        var addTicketToCartUseCase = new AddTicketToCartUseCase();
+
+        var message = addTicketToCartUseCase.execute(1);
+
+        assertEquals("Concert Visitor does not exist", message);
     }
 }
