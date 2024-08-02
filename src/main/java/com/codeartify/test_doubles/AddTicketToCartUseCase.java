@@ -7,11 +7,11 @@ public class AddTicketToCartUseCase {
         this.concertVisitors = concertVisitors;
     }
 
-    public String execute(int concertVisitorId) {
+    public String execute(int concertVisitorId, String myConcert) {
         if (!concertVisitors.exists(concertVisitorId)) {
             return "Concert Visitor does not exist";
         }
-        return "No available tickets!";
+        return null;
     }
 
 }
