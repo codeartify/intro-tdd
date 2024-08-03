@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BuyConcertTicketUseCaseShould {
     @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_registered() {
-        var buyConcertTicketUseCase = new BuyConcertTicketUseCase();
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase((id) -> false);
 
         assertThrows(ConcertVisitorNotRegisteredException.class, () -> {
             buyConcertTicketUseCase.execute(0);
@@ -16,7 +16,7 @@ public class BuyConcertTicketUseCaseShould {
 
     @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_to_buy_tickets() {
-        var buyConcertTicketUseCase = new BuyConcertTicketUseCase();
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase((id) -> true);
 
         assertThrows(ConcertVisitorNotEligibleForTicketPurchasingException.class, () -> {
             buyConcertTicketUseCase.execute(1);
