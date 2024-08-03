@@ -1,12 +1,26 @@
 package com.codeartify.test_doubles;
 
-public class BuyConcertTicketUseCaseShould {
-    void reject_buying_a_ticket_if_the_concert_visitor_does_not_exist() {
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class BuyConcertTicketUseCaseShould {
+    @Test
+    void reject_buying_a_ticket_if_the_concert_visitor_is_not_registered() {
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase();
+
+        assertThrows(ConcertVisitorNotRegisteredException.class, () -> {
+            buyConcertTicketUseCase.execute(0);
+        });
     }
 
+    @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_to_buy_tickets() {
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase();
 
+        assertThrows(ConcertVisitorNotEligibleForTicketPurchasingException.class, () -> {
+            buyConcertTicketUseCase.execute(1);
+        });
     }
 
     void reject_buying_a_ticket_if_there_are_not_tickets_available_for_the_requested_concert() {
