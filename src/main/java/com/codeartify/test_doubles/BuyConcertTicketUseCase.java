@@ -3,9 +3,13 @@ package com.codeartify.test_doubles;
 public class BuyConcertTicketUseCase {
 
     private final ForVerifyingRegistrationOfConcertVisitor checkRegistration;
+    private final ConcertVisitor concertVisitor;
 
-    public BuyConcertTicketUseCase(ForVerifyingRegistrationOfConcertVisitor forVerifyingRegistrationOfConcertVisitor) {
+    public BuyConcertTicketUseCase(
+            ForVerifyingRegistrationOfConcertVisitor forVerifyingRegistrationOfConcertVisitor,
+            ConcertVisitor concertVisitor) {
         this.checkRegistration = forVerifyingRegistrationOfConcertVisitor;
+        this.concertVisitor = concertVisitor;
     }
 
     public void execute(int concertVisitorId) {
@@ -13,8 +17,11 @@ public class BuyConcertTicketUseCase {
             throw new ConcertVisitorNotRegisteredException();
         }
 
-        throw new ConcertVisitorNotEligibleToPurchaseTicketsException();
+        if(!concertVisitor.isEligibleForTicketPurchase()) {
+            throw new ConcertVisitorNotEligibleToPurchaseTicketsException();
+        }
 
+        throw new ConcertSoldOutException();
 
     }
 
