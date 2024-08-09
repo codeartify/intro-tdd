@@ -32,7 +32,10 @@ public class BuyConcertTicketUseCase {
         var ticket = new Ticket(1, concertName);
         concertVisitor.addTicket(ticket);
 
-        return new TicketDetails(ticket.ticketNumber(), concertVisitor.id(), ticket.concertName());
+        return new TicketDetails(
+                ticket.ticketNumber(),
+                concertVisitor.id(),
+                ticket.concertName());
     }
 
 }

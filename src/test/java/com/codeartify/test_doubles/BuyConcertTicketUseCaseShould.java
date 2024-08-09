@@ -51,9 +51,7 @@ public class BuyConcertTicketUseCaseShould {
         var expectedTicket = new Ticket(expectedTicketDetails.ticketNumber(), expectedTicketDetails.concertName());
 
 
-        TicketDetails actualTicket = buyConcertTicketUseCase.execute(
-                concertVisitor.id(), "My Concert");
-
+        TicketDetails actualTicket = buyConcertTicketUseCase.execute(concertVisitor.id(), "My Concert");
 
         assertEquals(expectedTicketDetails, actualTicket);
         assertEquals(expectedTicket, concertVisitor.ticket());
