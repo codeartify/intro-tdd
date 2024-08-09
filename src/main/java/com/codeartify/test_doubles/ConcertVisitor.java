@@ -1,54 +1,31 @@
 package com.codeartify.test_doubles;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
-public final class ConcertVisitor {
-    private final int id;
-    private final boolean isEligibleForTicketPurchase;
-    private Ticket ticket;
+public class ConcertVisitor {
+    private final int concertVisitorId;
+    private final boolean isEligibleForBuyingConcertTickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
-    public ConcertVisitor(int id, boolean isEligibleForTicketPurchase) {
-        this.id = id;
-        this.isEligibleForTicketPurchase = isEligibleForTicketPurchase;
+    public ConcertVisitor(int concertVisitorId, boolean isEligibleForBuyingConcertTickets) {
+        this.concertVisitorId = concertVisitorId;
+        this.isEligibleForBuyingConcertTickets = isEligibleForBuyingConcertTickets;
     }
 
-
-    public boolean isEligibleForTicketPurchase() {
-        return isEligibleForTicketPurchase;
+    public boolean isEligibleForBuyingConcertTickets() {
+        return isEligibleForBuyingConcertTickets;
     }
 
-    public Ticket ticket() {
-        return ticket;
-    }
-
-    public int id() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (ConcertVisitor) obj;
-        return this.id == that.id &&
-                this.isEligibleForTicketPurchase == that.isEligibleForTicketPurchase &&
-                Objects.equals(this.ticket, that.ticket);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, isEligibleForTicketPurchase, ticket);
-    }
-
-    @Override
-    public String toString() {
-        return "ConcertVisitor[" +
-                "id=" + id + ", " +
-                "isEligibleForTicketPurchase=" + isEligibleForTicketPurchase + ", " +
-                "ticket=" + ticket + ']';
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
     public void addTicket(Ticket ticket) {
-        this.ticket = ticket;
+        this.tickets.add(ticket);
+    }
+
+    boolean isBannedFromBuyingTickets() {
+        return !isEligibleForBuyingConcertTickets();
     }
 }

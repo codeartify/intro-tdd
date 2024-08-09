@@ -1,4 +1,4 @@
 package com.codeartify.test_doubles;
 
-public record TicketDetails(int ticketNumber, int concertVisitorId, String concertName) {
+public record TicketDetails(int ticketId, int concertId, int concertVisitorId) {
 }

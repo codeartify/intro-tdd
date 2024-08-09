@@ -2,66 +2,101 @@ package com.codeartify.test_doubles;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BuyConcertTicketUseCaseShould {
     @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_registered() {
+        var concertVisitorRepository = new FakeConcertVisitorRepository(null);
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
-                (id) -> false,
-                new ConcertVisitor(0, false),
-                concertName -> false
+                concertVisitorRepository,
+                concertVisitorRepository,
+                concertVisitorRepository,
+                ticketsRepository,
+                ticketsRepository
         );
 
-        assertThrows(ConcertVisitorNotRegisteredException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
+        assertThrows(ConcertVisitorNotRegisteredException.class, () -> {
+            buyConcertTicketUseCase.executeWith(1, 1);
+        });
     }
 
     @Test
-    void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_to_buy_tickets() {
+    void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_for_buying_tickets() {
+        var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, false));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
-                (id) -> true,
-                new ConcertVisitor(0, false),
-                concertName -> false);
-
-        assertThrows(ConcertVisitorNotEligibleToPurchaseTicketsException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
-    }
-
-
-    @Test
-    void reject_buying_a_ticket_if_there_are_not_tickets_available_for_the_requested_concert() {
-        var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
-                (id) -> true,
-                new ConcertVisitor(0, true),
-                concertName -> true
+                concertVisitorRepository,
+                concertVisitorRepository,
+                concertVisitorRepository, ticketsRepository,
+                ticketsRepository
         );
 
-        assertThrows(ConcertSoldOutException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
+        assertThrows(ConcertVisitorNotEligibleForBuyingTicketsException.class, () -> {
+            buyConcertTicketUseCase.executeWith(1, 1);
+        });
     }
 
     @Test
-    void assign_a_ticket_to_a_an_existing_eligible_concert_visitor() {
-        var concertVisitor = new ConcertVisitor(1, true);
+    void reject_ticket_purchase_if_all_tickets_are_sold_out() {
+
+        var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, true));
+        var ticketsRepository = new FakeTicketsRepository(null);
+
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
-                (id) -> true,
-                concertVisitor,
-                concertName -> false
+                concertVisitorRepository,
+                concertVisitorRepository,
+                concertVisitorRepository, ticketsRepository,
+                ticketsRepository
         );
-        var expectedTicketDetails = new TicketDetails(1, 1, "My Concert");
-        var expectedTicket = new Ticket(expectedTicketDetails.ticketNumber(), expectedTicketDetails.concertName());
 
-
-        TicketDetails actualTicket = buyConcertTicketUseCase.execute(concertVisitor.id(), "My Concert");
-
-        assertEquals(expectedTicketDetails, actualTicket);
-        assertEquals(expectedTicket, concertVisitor.ticket());
+        assertThrows(ConcertSoldOutException.class, () -> {
+            buyConcertTicketUseCase.executeWith(1, 1);
+        });
     }
 
-    void allow_a_concert_visitor_to_buy_multiple_concert_tickets_for_the_same_concert() {
+    @Test
+    void add_ticket_to_concert_visitor() {
+        var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, true));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
 
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
+                concertVisitorRepository,
+                concertVisitorRepository,
+                concertVisitorRepository,
+                ticketsRepository,
+                ticketsRepository
+        );
+
+        buyConcertTicketUseCase.executeWith(1, 1);
+
+        var concertVisitor = concertVisitorRepository.fetchById(1);
+
+        assertEquals(List.of(new Ticket(1)), concertVisitor.getTickets());
     }
 
-    void limit_the_number_of_concert_tickets_for_the_same_concert_per_concert_visitor_to_the_specified_number_provided_by_the_concert_provider() {
+    @Test
+    void show_ticket_details_to_caller() {
+        var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, true));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
 
+        var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
+                concertVisitorRepository,
+                concertVisitorRepository,
+                concertVisitorRepository,
+                ticketsRepository,
+                ticketsRepository
+        );
+
+        var ticketDetails = buyConcertTicketUseCase.executeWith(1, 1);
+
+        assertEquals(new TicketDetails(1, 1, 1), ticketDetails);
     }
+
 }

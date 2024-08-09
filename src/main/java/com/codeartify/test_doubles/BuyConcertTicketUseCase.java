@@ -2,40 +2,54 @@ package com.codeartify.test_doubles;
 
 public class BuyConcertTicketUseCase {
 
-    private final ForVerifyingRegistrationOfConcertVisitor checkRegistration;
-    private final ConcertVisitor concertVisitor;
-    private final ForCheckingTicketSales forCheckingTicketSales;
+    private final ForCheckingConcertVisitorRegistration forCheckingConcertVisitorRegistration;
+    private final ForFetchingConcertVisitors forFetchingConcertVisitors;
+    private final ForCheckingTicketAvailability forCheckingTicketAvailability;
+    private final ForFetchingTickets forFetchingTickets;
+    private final ForStoringConcertVisitors forStoringConcertVisitors;
+
 
     public BuyConcertTicketUseCase(
-            ForVerifyingRegistrationOfConcertVisitor forVerifyingRegistrationOfConcertVisitor,
-            ConcertVisitor concertVisitor,
-            ForCheckingTicketSales forCheckingTicketSales) {
+            ForCheckingConcertVisitorRegistration forCheckingConcertVisitorRegistration,
+            ForFetchingConcertVisitors forFetchingConcertVisitors,
+            ForStoringConcertVisitors forStoringConcertVisitors,
+            ForCheckingTicketAvailability forCheckingTicketAvailability,
+            ForFetchingTickets forFetchingTickets
+    ) {
+        this.forCheckingConcertVisitorRegistration = forCheckingConcertVisitorRegistration;
+        this.forFetchingConcertVisitors = forFetchingConcertVisitors;
+        this.forStoringConcertVisitors = forStoringConcertVisitors;
 
-        this.checkRegistration = forVerifyingRegistrationOfConcertVisitor;
-        this.concertVisitor = concertVisitor;
-        this.forCheckingTicketSales = forCheckingTicketSales;
+        this.forCheckingTicketAvailability = forCheckingTicketAvailability;
+        this.forFetchingTickets = forFetchingTickets;
     }
 
-    public TicketDetails execute(int concertVisitorId, String concertName) {
-        if (!checkRegistration.isRegistered(concertVisitorId)) {
+    public TicketDetails executeWith(int concertVisitorId, int concertId)
+            throws
+            ConcertVisitorNotRegisteredException,
+            ConcertSoldOutException,
+            ConcertVisitorNotEligibleForBuyingTicketsException {
+
+        if (forCheckingConcertVisitorRegistration.requiresRegistration(concertVisitorId)) {
             throw new ConcertVisitorNotRegisteredException();
         }
 
-        if(!concertVisitor.isEligibleForTicketPurchase()) {
-            throw new ConcertVisitorNotEligibleToPurchaseTicketsException();
-        }
-
-        if (forCheckingTicketSales.isSoldOut(concertName)) {
+        if (forCheckingTicketAvailability.isSoldOut(concertId)) {
             throw new ConcertSoldOutException();
         }
 
-        var ticket = new Ticket(1, concertName);
+        var concertVisitor = forFetchingConcertVisitors.fetchById(concertVisitorId);
+
+        if (concertVisitor.isBannedFromBuyingTickets()) {
+            throw new ConcertVisitorNotEligibleForBuyingTicketsException();
+        }
+
+        var ticket = forFetchingTickets.fetchTicketByConcertId(concertId);
         concertVisitor.addTicket(ticket);
 
-        return new TicketDetails(
-                ticket.ticketNumber(),
-                concertVisitor.id(),
-                ticket.concertName());
+        forStoringConcertVisitors.store(concertVisitor);
+
+        return new TicketDetails(ticket.ticketNumber(), concertId, concertVisitorId);
     }
 
 }
