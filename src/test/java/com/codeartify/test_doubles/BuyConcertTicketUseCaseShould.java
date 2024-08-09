@@ -16,7 +16,7 @@ public class BuyConcertTicketUseCaseShould {
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_to_buy_tickets() {
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase((id) -> true);
 
-        assertThrows(ConcertVisitorNotEligibleForTicketPurchasingException.class, () -> buyConcertTicketUseCase.execute(1));
+        assertThrows(ConcertVisitorNotEligibleToPurchaseTicketsException.class, () -> buyConcertTicketUseCase.execute(1));
     }
 
     void reject_buying_a_ticket_if_there_are_not_tickets_available_for_the_requested_concert() {

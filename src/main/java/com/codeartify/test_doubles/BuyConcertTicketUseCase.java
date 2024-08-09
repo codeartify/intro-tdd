@@ -13,7 +13,7 @@ public class BuyConcertTicketUseCase {
             throw new ConcertVisitorNotRegisteredException();
         }
 
-        throw new ConcertVisitorNotEligibleForTicketPurchasingException();
+        throw new ConcertVisitorNotEligibleToPurchaseTicketsException();
 
 
     }
