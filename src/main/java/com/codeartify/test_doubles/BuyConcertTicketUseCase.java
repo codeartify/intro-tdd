@@ -16,7 +16,7 @@ public class BuyConcertTicketUseCase {
         this.forCheckingTicketSales = forCheckingTicketSales;
     }
 
-    public Ticket execute(int concertVisitorId, String concertName) {
+    public TicketDetails execute(int concertVisitorId, String concertName) {
         if (!checkRegistration.isRegistered(concertVisitorId)) {
             throw new ConcertVisitorNotRegisteredException();
         }
@@ -29,7 +29,7 @@ public class BuyConcertTicketUseCase {
             throw new ConcertSoldOutException();
         }
 
-        return new Ticket(1, concertVisitorId, concertName);
+        return new TicketDetails(1, concertVisitorId, concertName);
     }
 
 }

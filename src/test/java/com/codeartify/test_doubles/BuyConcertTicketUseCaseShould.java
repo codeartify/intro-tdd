@@ -48,10 +48,10 @@ public class BuyConcertTicketUseCaseShould {
                 concertName -> false
         );
 
-        Ticket actualTicket = buyConcertTicketUseCase.execute(
+        TicketDetails actualTicket = buyConcertTicketUseCase.execute(
                 concertVisitor.id(), "My Concert");
 
-        var expectedTicket = new Ticket(1, 1, "My Concert");
+        var expectedTicket = new TicketDetails(1, 1, "My Concert");
 
         assertEquals(expectedTicket, actualTicket);
     }
