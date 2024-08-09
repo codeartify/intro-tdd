@@ -11,7 +11,7 @@ public class BuyConcertTicketUseCaseShould {
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 (id) -> false,
                 new ConcertVisitor(0, false),
-                false
+                concertName -> false
         );
 
         assertThrows(ConcertVisitorNotRegisteredException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
@@ -22,7 +22,7 @@ public class BuyConcertTicketUseCaseShould {
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 (id) -> true,
                 new ConcertVisitor(0, false),
-                false);
+                concertName -> false);
 
         assertThrows(ConcertVisitorNotEligibleToPurchaseTicketsException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
     }
@@ -33,7 +33,7 @@ public class BuyConcertTicketUseCaseShould {
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 (id) -> true,
                 new ConcertVisitor(0, true),
-                true
+                concertName -> true
         );
 
         assertThrows(ConcertSoldOutException.class, () -> buyConcertTicketUseCase.execute(0, "My Concert"));
@@ -45,7 +45,7 @@ public class BuyConcertTicketUseCaseShould {
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 (id) -> true,
                 concertVisitor,
-                false
+                concertName -> false
         );
 
         Ticket actualTicket = buyConcertTicketUseCase.execute(

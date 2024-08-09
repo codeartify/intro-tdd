@@ -4,14 +4,16 @@ public class BuyConcertTicketUseCase {
 
     private final ForVerifyingRegistrationOfConcertVisitor checkRegistration;
     private final ConcertVisitor concertVisitor;
-    private final boolean isSoldOut;
+    private final ForCheckingTicketSales forCheckingTicketSales;
 
     public BuyConcertTicketUseCase(
             ForVerifyingRegistrationOfConcertVisitor forVerifyingRegistrationOfConcertVisitor,
-            ConcertVisitor concertVisitor, boolean isSoldOut) {
+            ConcertVisitor concertVisitor,
+            ForCheckingTicketSales forCheckingTicketSales) {
+
         this.checkRegistration = forVerifyingRegistrationOfConcertVisitor;
         this.concertVisitor = concertVisitor;
-        this.isSoldOut = isSoldOut;
+        this.forCheckingTicketSales = forCheckingTicketSales;
     }
 
     public Ticket execute(int concertVisitorId, String concertName) {
@@ -23,7 +25,7 @@ public class BuyConcertTicketUseCase {
             throw new ConcertVisitorNotEligibleToPurchaseTicketsException();
         }
 
-        if (isSoldOut) {
+        if (forCheckingTicketSales.isSoldOut(concertName)) {
             throw new ConcertSoldOutException();
         }
 
