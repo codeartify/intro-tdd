@@ -47,13 +47,16 @@ public class BuyConcertTicketUseCaseShould {
                 concertVisitor,
                 concertName -> false
         );
+        var expectedTicketDetails = new TicketDetails(1, 1, "My Concert");
+        var expectedTicket = new Ticket(expectedTicketDetails.ticketNumber(), expectedTicketDetails.concertName());
+
 
         TicketDetails actualTicket = buyConcertTicketUseCase.execute(
                 concertVisitor.id(), "My Concert");
 
-        var expectedTicket = new TicketDetails(1, 1, "My Concert");
 
-        assertEquals(expectedTicket, actualTicket);
+        assertEquals(expectedTicketDetails, actualTicket);
+        assertEquals(expectedTicket, concertVisitor.ticket());
     }
 
     void allow_a_concert_visitor_to_buy_multiple_concert_tickets_for_the_same_concert() {

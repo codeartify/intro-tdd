@@ -29,7 +29,10 @@ public class BuyConcertTicketUseCase {
             throw new ConcertSoldOutException();
         }
 
-        return new TicketDetails(1, concertVisitorId, concertName);
+        var ticket = new Ticket(1, concertName);
+        concertVisitor.addTicket(ticket);
+
+        return new TicketDetails(ticket.ticketNumber(), concertVisitor.id(), ticket.concertName());
     }
 
 }
