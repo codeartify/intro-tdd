@@ -1,6 +1,5 @@
 package com.codeartify.test_doubles;
 
-public record Ticket(int ticketNumber) {
-
+public record Ticket(int ticketNumber, int concertId) {
 
 }

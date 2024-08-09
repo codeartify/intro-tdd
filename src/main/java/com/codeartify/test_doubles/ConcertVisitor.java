@@ -28,4 +28,18 @@ public class ConcertVisitor {
     boolean isBannedFromBuyingTickets() {
         return !isEligibleForBuyingConcertTickets();
     }
+
+    public boolean purchasedTicketForConcert(int concertId) {
+        return tickets.stream()
+                .anyMatch(ticket -> ticket.concertId() == concertId);
+    }
+
+    public void removeTicketFor(int concertId) {
+        this.tickets = new ArrayList<>(tickets.stream().filter(ticket -> ticket.concertId() != concertId).toList());
+    }
+
+    public int getId() {
+        return concertVisitorId;
+    }
+
 }

@@ -10,7 +10,9 @@ class FakeConcertVisitorRepository implements ConcertVisitorRepository {
 
     @Override
     public ConcertVisitor fetchById(int concertVisitorId) {
-        return this.concertVisitor;
+        var copy = new ConcertVisitor(this.concertVisitor.getId(), this.concertVisitor.isEligibleForBuyingConcertTickets());
+        concertVisitor.getTickets().forEach(copy::addTicket);
+        return copy;
     }
 
     @Override

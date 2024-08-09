@@ -11,7 +11,7 @@ public class BuyConcertTicketUseCaseShould {
     @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_registered() {
         var concertVisitorRepository = new FakeConcertVisitorRepository(null);
-        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1, 1));
 
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 concertVisitorRepository,
@@ -29,7 +29,7 @@ public class BuyConcertTicketUseCaseShould {
     @Test
     void reject_buying_a_ticket_if_the_concert_visitor_is_not_eligible_for_buying_tickets() {
         var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, false));
-        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1, 1));
 
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 concertVisitorRepository,
@@ -64,7 +64,7 @@ public class BuyConcertTicketUseCaseShould {
     @Test
     void add_ticket_to_concert_visitor() {
         var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, true));
-        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1, 1));
 
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 concertVisitorRepository,
@@ -78,13 +78,13 @@ public class BuyConcertTicketUseCaseShould {
 
         var concertVisitor = concertVisitorRepository.fetchById(1);
 
-        assertEquals(List.of(new Ticket(1)), concertVisitor.getTickets());
+        assertEquals(List.of(new Ticket(1, 1)), concertVisitor.getTickets());
     }
 
     @Test
     void show_ticket_details_to_caller() {
         var concertVisitorRepository = new FakeConcertVisitorRepository(new ConcertVisitor(1, true));
-        var ticketsRepository = new FakeTicketsRepository(new Ticket(1));
+        var ticketsRepository = new FakeTicketsRepository(new Ticket(1, 1));
 
         var buyConcertTicketUseCase = new BuyConcertTicketUseCase(
                 concertVisitorRepository,
