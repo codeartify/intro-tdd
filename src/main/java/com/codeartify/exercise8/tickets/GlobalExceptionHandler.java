@@ -1,4 +1,4 @@
-package com.codeartify.exercise8;
+package com.codeartify.exercise8.tickets;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

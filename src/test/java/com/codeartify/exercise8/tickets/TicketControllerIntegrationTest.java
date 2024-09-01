@@ -1,8 +1,8 @@
-package com.codeartify.exercise8;
+package com.codeartify.exercise8.tickets;
 
-import com.codeartify.exercise8.model.Event;
-import com.codeartify.exercise8.model.PaymentRequest;
-import com.codeartify.exercise8.model.Ticket;
+import com.codeartify.exercise8.tickets.model.Event;
+import com.codeartify.exercise8.tickets.model.PaymentRequest;
+import com.codeartify.exercise8.tickets.model.Ticket;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

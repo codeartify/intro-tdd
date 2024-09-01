@@ -1,4 +1,4 @@
-package com.codeartify.exercise8.model;
+package com.codeartify.exercise8.tickets.model;
 
 import jakarta.validation.constraints.Min;
 import lombok.*;
