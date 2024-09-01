@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Implement test cases in that specific order
- */
 public class TicTacToeShould {
     @Test
     void switch_players_after_playing_free_cell() {
@@ -117,7 +114,6 @@ public class TicTacToeShould {
 
         assertEquals(Player.X, ticTacToe.winner());
     }
-
 
 
     @Test
