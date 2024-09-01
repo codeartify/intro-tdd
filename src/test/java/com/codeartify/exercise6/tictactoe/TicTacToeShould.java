@@ -1,5 +1,6 @@
-package com.codeartify.tictactoe;
+package com.codeartify.exercise6.tictactoe;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +16,7 @@ public class TicTacToeShould {
 
         ticTacToe.play(Cell.CENTER);
 
-        assertEquals(Player.O, ticTacToe.currentPlayer());
+        Assertions.assertEquals(Player.O, ticTacToe.currentPlayer());
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.codeartify.tictactoe;
+package com.codeartify.exercise6.tictactoe;
 
 import java.util.HashMap;
 import java.util.Map;

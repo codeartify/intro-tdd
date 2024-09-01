@@ -1,4 +1,4 @@
-package com.codeartify.parallelchange;
+package com.codeartify.exercise6.stack;
 
 
 import org.junit.jupiter.api.Test;

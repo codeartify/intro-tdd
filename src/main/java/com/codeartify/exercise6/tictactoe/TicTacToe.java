@@ -1,11 +1,11 @@
-package com.codeartify.tictactoe;
+package com.codeartify.exercise6.tictactoe;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.codeartify.tictactoe.Cell.*;
-import static com.codeartify.tictactoe.Player.*;
+import static com.codeartify.exercise6.tictactoe.Cell.*;
+import static com.codeartify.exercise6.tictactoe.Player.*;
 
 public class TicTacToe {
     public static final int NUMBER_OF_CELLS = 9;
