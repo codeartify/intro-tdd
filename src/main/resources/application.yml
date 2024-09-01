@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: tdd-intro
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none  # Do not generate schema via JPA; rely on schema.sql
+  sql:
+    init:
+      mode: always  # Always initialize the database using schema.sql and data.sql
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
+  h2:
+    console:
+      enabled: true  # Enable the H2 console for debugging
