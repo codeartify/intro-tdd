@@ -1,23 +1,26 @@
 package com.codeartify.tictactoe;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.codeartify.tictactoe.Cell.*;
 import static com.codeartify.tictactoe.Player.*;
 
 public class TicTacToe {
-    private final Board board;
+    public static final int NUMBER_OF_CELLS = 9;
+    private final Map<Cell, Player> board = new HashMap<>();
+
     private Player currentPlayer;
     private Player winner;
 
-    private TicTacToe(Board board) {
-        this.board = board;
+    private TicTacToe() {
         currentPlayer = X;
         winner = EMPTY;
     }
 
     public static TicTacToe create() {
-        return new TicTacToe(new Board());
+        return new TicTacToe();
     }
 
 
@@ -42,11 +45,11 @@ public class TicTacToe {
     }
 
     private boolean isMarked(Cell cell) {
-        return board.isMarked(cell);
+        return board.getOrDefault(cell, EMPTY) != EMPTY;
     }
 
     private void mark(Cell cell) {
-        this.board.mark(cell, currentPlayer);
+        this.board.put(cell, currentPlayer);
     }
 
     private void selectWinner() {
@@ -90,7 +93,7 @@ public class TicTacToe {
     }
 
     public Player markAt(Cell cell) {
-        return board.markAt(cell);
+        return this.board.getOrDefault(cell, Player.EMPTY);
     }
 
     public Player winner() {
@@ -98,6 +101,6 @@ public class TicTacToe {
     }
 
     public boolean isDraw() {
-        return board.isFilled() && !hasWinner();
+        return board.size() == NUMBER_OF_CELLS && !hasWinner();
     }
 }
