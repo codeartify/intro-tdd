@@ -1,6 +1,6 @@
 package com.codeartify.test_doubles;
 
-class FakeConcertVisitorRepository implements ConcertVisitorRepository {
+public class FakeConcertVisitorRepository implements ConcertVisitorRepository {
 
     private ConcertVisitor concertVisitor;
 

@@ -1,10 +1,10 @@
 package com.codeartify.test_doubles;
 
 public class CancelTicketUseCase {
-    private ForCheckingConcertVisitorRegistration forCheckingConcertVisitorRegistration;
-    private ForFetchingConcertVisitors forFetchingConcertVisitors;
-    private ForCheckingCancellationPolicy forCheckingCancellationPolicy;
-    private ForStoringConcertVisitors forStoringConcertVisitors;
+    private final ForCheckingConcertVisitorRegistration forCheckingConcertVisitorRegistration;
+    private final ForFetchingConcertVisitors forFetchingConcertVisitors;
+    private final ForCheckingCancellationPolicy forCheckingCancellationPolicy;
+    private final ForStoringConcertVisitors forStoringConcertVisitors;
 
     public CancelTicketUseCase(ForCheckingConcertVisitorRegistration forCheckingConcertVisitorRegistration, ForFetchingConcertVisitors forFetchingConcertVisitors, ForCheckingCancellationPolicy forCheckingCancellationPolicy, FakeConcertVisitorRepository forStoringConcertVisitors) {
         this.forCheckingConcertVisitorRegistration = forCheckingConcertVisitorRegistration;
